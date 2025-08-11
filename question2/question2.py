@@ -25,7 +25,7 @@ def cone(path):
         c = max(contours, key=cv2.contourArea)
         ((x, y), radius) = cv2.minEnclosingCircle(c)
 
-    if radius > 10:
+    if radius > 15:
         cv2.circle(image, (int(x), int(y)), int(radius), (0, 255, 255), 2)
         cv2.circle(image, (int(x), int(y)), 5, (0, 0, 255), -1)
         cv2.putText(image, f"COne", (int(x) - 20, int(y) - 20),
