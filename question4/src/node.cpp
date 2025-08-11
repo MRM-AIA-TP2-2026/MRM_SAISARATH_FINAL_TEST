@@ -9,15 +9,15 @@
 #include <pcl/segmentation/sac_segmentation.h>
 #include <pcl/segmentation/extract_clusters.h>
 
-class ObstacleDetectionNode : public rclcpp::Node
+class image : public rclcpp::Node
 {
 public:
-    ObstacleDetectionNode()
+    image()
         : Node("question4")
     {
         sub_ = this->create_subscription<sensor_msgs::msg::Image>(
             "/Image", 10,
-            std::bind(&ObstacleDetectionNode::pointCloudBufferCallback, this, std::placeholders::_1));
+            std::bind(&image::pointCloudBufferCallback, this, std::placeholders::_1));
 
         pub_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/cloud", 10);
     }
@@ -45,7 +45,7 @@ private:
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<ObstacleDetectionNode>());
+    rclcpp::spin(std::make_shared<image>());
     rclcpp::shutdown();
     return 0;
 }
